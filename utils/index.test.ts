@@ -1,5 +1,5 @@
 import { Utils } from ".";
-import { InvestmentTerm, TimeInterval } from "../interface";
+import { InterestPaidType, InvestmentTerm, TimeInterval } from "../interface";
 
 describe("Utils#termToIntervals", () => {
   it("convert terms to interval correctly when interval set to month", () => {
@@ -32,8 +32,8 @@ describe("Utils#termToIntervals", () => {
 
 describe("Utils#interestByInterval", () => {
   it("returns correct interest value for each interval, based on interval", () => {
-    expect(Utils.interestByInterval(12, TimeInterval.MONTH)).toEqual(1);
-    expect(Utils.interestByInterval(12, TimeInterval.QUARTER)).toEqual(3);
-    expect(Utils.interestByInterval(12, TimeInterval.YEAR)).toEqual(12);
+    expect(Utils.interestByInterval(12, InterestPaidType.MONTHLY)).toEqual(1);
+    expect(Utils.interestByInterval(12, InterestPaidType.QUARTERLY)).toEqual(3);
+    expect(Utils.interestByInterval(12, InterestPaidType.ANNUALLY)).toEqual(12);
   });
 });
