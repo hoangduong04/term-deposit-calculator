@@ -1,7 +1,7 @@
 export enum InterestPaidType {
   MONTHLY = "monthly",
   QUARTERLY = "quaterly",
-  YEARLY = "yearly",
+  ANNUALLY = "annualy",
   AT_MATURITY = "maturity",
 }
 
