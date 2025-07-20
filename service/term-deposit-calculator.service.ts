@@ -1,4 +1,5 @@
-import { InterestPaidType, InvestmentTerm } from "../interface";
+import { InterestPaidType, InvestmentTerm, TimeInterval } from "../interface";
+import { Utils } from "../utils";
 
 export class TermDepositCalculatorService {
   constructor() {}
@@ -13,7 +14,7 @@ export class TermDepositCalculatorService {
   }
 
   /**
-   * Recursive functions to calculate compounded amount based on number of interest paid
+   * Recursive function to calculate compounded amount based on number of interest paid
    * @param amount
    * @param interestRate
    * @param totalCount
@@ -36,5 +37,26 @@ export class TermDepositCalculatorService {
       totalCount,
       currentCount + 1
     );
+  }
+
+  /**
+   * Convert deposit term into number of intervals of interest payment
+   */
+  private getCompoundingIntervals(
+    investmentTerm: InvestmentTerm,
+    interestPaid: InterestPaidType
+  ): number {
+    switch (interestPaid) {
+      case InterestPaidType.AT_MATURITY:
+        return 1;
+      case InterestPaidType.MONTHLY:
+        return Utils.termToIntervals(investmentTerm, TimeInterval.MONTH);
+      case InterestPaidType.QUARTERLY:
+        return Utils.termToIntervals(investmentTerm, TimeInterval.QUARTER);
+      case InterestPaidType.ANNUALLY:
+        return Utils.termToIntervals(investmentTerm, TimeInterval.YEAR);
+      default:
+        return -1;
+    }
   }
 }

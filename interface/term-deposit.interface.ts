@@ -9,3 +9,9 @@ export interface InvestmentTerm {
   months?: number;
   years?: number;
 }
+
+export enum TimeInterval {
+  MONTH = "month",
+  YEAR = "year",
+  QUARTER = "quarter",
+}
