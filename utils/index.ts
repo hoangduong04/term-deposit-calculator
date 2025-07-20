@@ -1,7 +1,7 @@
 import { InvestmentTerm, TimeInterval } from "../interface";
 
 export abstract class Utils {
-  static convertTermToIntervals(
+  static termToIntervals(
     investmentTerm: InvestmentTerm,
     intervalType: TimeInterval
   ): number {
@@ -9,6 +9,11 @@ export abstract class Utils {
       case TimeInterval.MONTH:
         return (
           (investmentTerm?.years ?? 0) * 12 + (investmentTerm?.months ?? 0)
+        );
+      case TimeInterval.QUARTER:
+        return (
+          ((investmentTerm?.years ?? 0) * 12 + (investmentTerm?.months ?? 0)) /
+          3
         );
       default:
         return (
