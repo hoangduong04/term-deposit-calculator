@@ -10,7 +10,19 @@ export class TermDepositCalculatorService {
     investmentTerm: InvestmentTerm,
     interestPaid: InterestPaidType
   ): number {
-    return -1;
+    const intervalInterest = Utils.interestByInterval(
+      interestRate,
+      interestPaid
+    );
+
+    const intervals = this.getCompoundingIntervals(
+      investmentTerm,
+      interestPaid
+    );
+
+    return Math.round(
+      this.compound(startingAmount, intervalInterest, intervals, 0)
+    );
   }
 
   /**
