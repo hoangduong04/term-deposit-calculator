@@ -10,6 +10,36 @@ export class TermDepositCalculatorService {
     investmentTerm: InvestmentTerm,
     interestPaid: InterestPaidType
   ): number {
+    if (isNaN(startingAmount)) {
+      console.error("Please enter numeric starting amount");
+      return -1;
+    }
+
+    if (isNaN(interestRate)) {
+      console.error("Please enter numeric interest rate");
+      return -1;
+    }
+
+    if (startingAmount === 0) return 0;
+
+    // If interest rate is 0 or if investment term is 0
+    if (interestRate === 0 || (!investmentTerm.months && !investmentTerm.years))
+      return startingAmount;
+
+    // Special case to calculate interest rate at maturity
+    if (interestPaid === InterestPaidType.AT_MATURITY) {
+      const numberOfYears = Utils.termToIntervals(
+        investmentTerm,
+        TimeInterval.YEAR
+      );
+      const combinedInterestRate = interestRate * numberOfYears;
+
+      return Math.round(
+        this.compound(startingAmount, combinedInterestRate, 1, 0)
+      );
+    }
+
+    // Default - divide term into intervals based on interest payment frequency, then recursively compound the amount
     const intervalInterest = Utils.interestByInterval(
       interestRate,
       interestPaid
