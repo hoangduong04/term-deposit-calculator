@@ -5,6 +5,7 @@
     "ts-jest": "^29.4.0"
   },
   "dependencies": {
+    "currency.js": "^2.0.4",
     "ts-node": "^10.9.2"
   },
   "scripts": {
