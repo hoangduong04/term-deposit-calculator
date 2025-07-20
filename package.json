@@ -3,14 +3,14 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.15",
     "jest": "^30.0.4",
-    "ts-jest": "^29.4.0"
+    "ts-jest": "^29.4.0",
+    "tsx": "^4.20.3"
   },
   "dependencies": {
-    "currency.js": "^2.0.4",
-    "ts-node": "^10.9.2"
+    "currency.js": "^2.0.4"
   },
   "scripts": {
-    "dev": "ts-node main.ts",
+    "dev": "npx tsx main.ts",
     "test": "jest"
   }
 }
