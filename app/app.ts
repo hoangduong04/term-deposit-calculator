@@ -8,7 +8,7 @@ export class App {
   public async start() {
     const termCalculatorService = new TermDepositCalculatorService();
     let amountStr = "";
-    const inputConfig = {
+    const INPUT_CONFIG = {
       signal: AbortSignal.timeout(300_000), // 5 minutes timeout
     };
 
@@ -22,14 +22,19 @@ export class App {
 
       try {
         // starting amount
-        amountStr = await rl.question("Enter starting amount: ", inputConfig);
+        amountStr = await rl.question(
+          "Enter starting amount (-1 to exit): ",
+          INPUT_CONFIG
+        );
+
+        if (amountStr === "-1") return;
 
         const amount = parseInt(amountStr);
 
         // interest rate
         let interestRateStr = await rl.question(
           "Enter interest rate: ",
-          inputConfig
+          INPUT_CONFIG
         );
 
         const interestRate = parseFloat(interestRateStr);
@@ -45,7 +50,7 @@ export class App {
 
         let interestPaidIntervalStr = await rl.question(
           interestPaidQ,
-          inputConfig
+          INPUT_CONFIG
         );
 
         let interestPaid;
@@ -70,14 +75,14 @@ export class App {
 
         let termYearStr = await rl.question(
           "Enter years of deposit term: ",
-          inputConfig
+          INPUT_CONFIG
         );
 
         const termYear = parseInt(termYearStr);
 
         let termMonthStr = await rl.question(
           "Enter months of deposit term: ",
-          inputConfig
+          INPUT_CONFIG
         );
 
         const termMonth = parseInt(termMonthStr);
