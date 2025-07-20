@@ -1,4 +1,4 @@
-import { InvestmentTerm, TimeInterval } from "../interface";
+import { InterestPaidType, InvestmentTerm, TimeInterval } from "../interface";
 
 export abstract class Utils {
   static termToIntervals(
@@ -19,6 +19,20 @@ export abstract class Utils {
         return (
           (investmentTerm?.years ?? 0) + (investmentTerm?.months ?? 0) / 12
         );
+    }
+  }
+
+  static interestByInterval(
+    interest: number,
+    intervalType: InterestPaidType
+  ): number {
+    switch (intervalType) {
+      case InterestPaidType.MONTHLY:
+        return interest / 12;
+      case InterestPaidType.QUARTERLY:
+        return interest / 4;
+      default:
+        return interest;
     }
   }
 }

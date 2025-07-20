@@ -29,3 +29,11 @@ describe("Utils#termToIntervals", () => {
     expect(Utils.termToIntervals(term, TimeInterval.QUARTER)).toEqual(14);
   });
 });
+
+describe("Utils#interestByInterval", () => {
+  it("returns correct interest value for each interval, based on interval", () => {
+    expect(Utils.interestByInterval(12, TimeInterval.MONTH)).toEqual(1);
+    expect(Utils.interestByInterval(12, TimeInterval.QUARTER)).toEqual(3);
+    expect(Utils.interestByInterval(12, TimeInterval.YEAR)).toEqual(12);
+  });
+});
