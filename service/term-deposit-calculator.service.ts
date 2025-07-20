@@ -4,6 +4,14 @@ import { Utils } from "../utils";
 export class TermDepositCalculatorService {
   constructor() {}
 
+  /**
+   * Calculate term deposit returns
+   * @param startingAmount amount deposited at the start
+   * @param interestRate annual interest rate
+   * @param investmentTerm term of investment, made up of months and years
+   * @param interestPaid frequency of which interest if paid
+   * @returns
+   */
   public calculate(
     startingAmount: number,
     interestRate: number,
@@ -57,10 +65,10 @@ export class TermDepositCalculatorService {
 
   /**
    * Recursive function to calculate compounded amount based on number of interest paid
-   * @param amount
-   * @param interestRate
-   * @param totalCount
-   * @param currentCount
+   * @param amount starting amount
+   * @param interestRate interest rate
+   * @param totalCount total number of times that the amount needs compounding
+   * @param currentCount variable to keep track of how many compounding has happened
    * @returns
    */
   private compound(
