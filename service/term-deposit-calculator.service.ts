@@ -1,11 +1,13 @@
+import { InterestPaidType, InvestmentTerm } from "../interface";
+
 export class TermDepositCalculatorService {
   constructor() {}
 
   public calculateInterest(
     startingAmount: number,
     interestRate: number,
-    investmentTerm: number,
-    interestPaid: any
+    investmentTerm: InvestmentTerm,
+    interestPaid: InterestPaidType
   ): number {
     return -1;
   }
